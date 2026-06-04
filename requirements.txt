@@ -1,0 +1,40 @@
+# Bronoskins Bot — зависимости
+# Python 3.10+
+
+# VK API (асинхронный)
+vkbottle>=4.3,<5.0
+
+# LLM
+aiohttp>=3.9
+
+# RAG и векторные БД
+langchain>=0.2,<0.4
+langchain-community>=0.2
+langchain-chroma>=0.1
+langchain-huggingface>=0.1
+chromadb>=0.5
+qdrant-client>=1.9
+langchain-qdrant>=0.1
+
+# Эмбеддинги
+sentence-transformers>=2.7
+
+# Загрузка документов
+docx2txt>=0.8
+pypdf>=4.0
+
+# Конфигурация
+pydantic-settings>=2.2
+python-dotenv>=1.0
+
+# Логирование
+loguru>=0.7
+
+# Научные вычисления (для косинусного сходства)
+numpy>=1.24,<2.0
+
+# YCLIENTS (опционально)
+# yclients-aio-client — нестабильная библиотека, реализован прямой API через aiohttp
+
+# CrewAI (опционально — если нужна оркестрация через CrewAI)
+# crewai>=0.30

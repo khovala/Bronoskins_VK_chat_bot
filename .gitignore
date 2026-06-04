@@ -1,0 +1,35 @@
+# Секреты и конфиденциальные данные
+.env
+
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Векторная БД (Chroma)
+chroma_db/
+
+# Qdrant
+qdrant_storage/
+
+# Логи
+logs/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
