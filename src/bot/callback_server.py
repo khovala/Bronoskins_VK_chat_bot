@@ -136,8 +136,13 @@ class VKCallbackServer:
             settings.vk_callback_host,
             settings.vk_callback_port,
         )
-        # Держим сервер живым бесконечно
+        # Keepalive: каждые 60 секунд выводим heartbeat чтобы SSH-туннель не рвался
         import asyncio
+        async def heartbeat():
+            while True:
+                await asyncio.sleep(60)
+                logger.debug("Heartbeat: сервер жив")
+        asyncio.create_task(heartbeat())
         await asyncio.Event().wait()
 
     def run(self):
