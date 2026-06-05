@@ -13,6 +13,11 @@ class Settings(BaseSettings):
 
     # VK
     vk_token: str = ""
+    vk_api_mode: str = "polling"  # "polling" или "callback"
+    vk_callback_host: str = "0.0.0.0"
+    vk_callback_port: int = 8080
+    vk_callback_secret: str = ""
+    vk_callback_confirmation: str = ""
 
     # YandexGPT
     yandexgpt_api_key: str = ""

@@ -26,6 +26,7 @@ from src.agents.tools import set_vector_store, set_yclients_agent
 from src.bot.vk_client import create_bot
 from src.bot.handlers import register_handlers
 from src.bot.middleware import LoggingMiddleware
+from src.bot.callback_server import VKCallbackServer
 
 
 async def main():
@@ -127,15 +128,20 @@ async def main():
     logger.info("Бот Bronoskins запущен и слушает сообщения...")
     logger.info("=" * 60)
 
-    # 8. Запуск бота (vkbottle сам управляет event loop'ом)
+    # 8. Запуск бота
     try:
-        # vkbottle 4.x: run() — синхронный метод, сам создаёт и управляет event loop
-        await bot.run_polling()
+        if settings.vk_api_mode == "callback":
+            logger.info("Режим Callback API: запуск HTTP-сервера на {}:{}",
+                         settings.vk_callback_host, settings.vk_callback_port)
+            server = VKCallbackServer(bot, orchestrator)
+            await server.start()
+        else:
+            logger.info("Режим LongPoll API")
+            await bot.run_polling()
     except Exception as e:
         logger.error("Ошибка в работе бота: {}", e)
     finally:
         logger.info("Бот остановлен. Завершение работы...")
-        # Здесь можно добавить cleanup ресурсов
 
 
 if __name__ == "__main__":
